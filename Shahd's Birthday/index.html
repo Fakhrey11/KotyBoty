@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Happy Birthday Shoshty❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root{
+      --fg:#fff7fb;
+      --accent:#ff7aa2;
+      --accent2:#ffd166;
+      --muted:#b8c0ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      color:var(--fg);
+      min-height:100dvh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position: relative;
+      background: url('LOVELY.jpg') ;
+      background-size: cover;
+    }
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    header{
+      text-align:center;
+      padding:56px 20px 24px;
+      position:relative;
+      z-index:2;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(28px,6vw,52px);
+      letter-spacing:0.5px;
+    }
+    p.lead{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(14px,2.5vw,18px);
+    }
+    .card{
+      width:min(900px,92%);
+      margin:18px auto;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.35);
+      overflow:hidden;
+      position:relative;
+      z-index:2;
+      backdrop-filter: blur(8px);
+    }
+    .hero{
+      padding:28px;
+      display:grid;
+      gap:18px;
+      place-items:center;
+      text-align:center;
+    }
+    .btn{
+      border:0;
+      background:linear-gradient(135deg, var(--accent), #ff9ab8 60%, var(--accent2));
+      color:#0e0f1a;
+      font-weight:700;
+      padding:14px 18px;
+      border-radius:14px;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(255,122,162,0.35);
+      transition:transform .08s ease;
+    }
+    .btn:active{ transform:translateY(1px) }
+    .hidden{ display:none }
+    section{
+      padding:22px 22px 26px;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    section h2{
+      margin:4px 0 12px;
+      font-size:22px;
+    }
+    .note{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:12px;
+      padding:16px;
+      line-height:1.55;
+    }
+    .typing-cursor {
+        font-weight: 300;
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+    footer{ padding:28px 0 40px; color:#99a; font-size:13px; position:relative; z-index:2; }
+    .video-container {
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      position: relative;
+    }
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(255, 122, 162, 0.25);
+    }
+    .image-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .image-modal-overlay.active {
+      display: flex;
+    }
+    .image-modal-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform: scale(0.8);
+      animation: modal-in 0.3s forwards ease-out;
+    }
+    @keyframes modal-in {
+      to { transform: scale(1); }
+    }
+    #fireworks-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .countdown-timer {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 10px;
+      color: var(--accent);
+    }
+    #musicControls {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .flip-card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      perspective: 1000px;
+    }
+    .flip-card {
+      background-color: transparent;
+      height: 200px; /* Decreased height to match smaller cards */
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      padding: 15px;
+    }
+    .flip-card-front {
+      background: linear-gradient(135deg, var(--accent), #ff9ab8 60%, var(--accent2));
+      color: #0e0f1a;
+      font-weight: bold;
+      font-size: 1rem; /* Decreased font size for smaller cards */
+    }
+    .flip-card-back {
+      background: rgba(255,255,255,0.08);
+      color: var(--fg);
+      transform: rotateY(180deg);
+      padding: 15px;
+      line-height: 1.4;
+      font-size: 0.9rem; /* Decreased font size for smaller cards */
+    }
+    .slideshow-container {
+        position: relative;
+        text-align: center;
+        max-width: 100%;
+        margin: auto;
+    }
+    .slideshow-image {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="background-overlay"></div>
+  <canvas id="fireworks-bg"></canvas>
+  <header>
+    <h1>Happy Birthday Shoshty❤️</h1>
+    <p class="lead">A little surprise made just for you❤️ 
+      Hope you Enjoy It ❤️</p>
+  </header>
+
+  <div class="card hero">
+    <p>Press the button to reveal the surprise❤️</p>
+    <button class="btn" id="revealBtn">Open the surprise✨</button>
+    <p id="hint" class="hidden">Scroll to explore the note, photos, and a small video.</p>
+  </div>
+
+  <div class="card hidden" id="surprise">
+    <section class="text-center">
+      <h2>Countdown to your birthday</h2>
+      <p>The time until your birthday is here!</p>
+      <div id="countdown" class="countdown-timer"></div>
+    </section>
+
+    <section>
+      <h2>A little message for you❤️</h2>
+      <div class="note" id="note">
+        <p id="typed-message"></p>
+        <span class="typing-cursor">|</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why I Love You</h2>
+      <p>I could write a book on this, but here are a few of my favorite reasons!</p>
+      <div class="flip-card-container" id="loveCards">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your beautiful smile</p>
+            </div>
+            <div class="flip-card-back">
+              <p>It's the first thing I look for every morning and the last thing I want to see at night.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your kindness</p>
+            </div>
+            <div class="flip-card-back">
+              <p>You have a way of making everyone around you feel loved and important, and that's a rare gift.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your intelligence</p>
+            </div>
+            <div class="flip-card-back">
+              <p>I love our late-night talks about everything and nothing. You always challenge me to think deeper.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Our adventures</p>
+            </div>
+            <div class="flip-card-back">
+              <p>Whether we're traveling or just exploring a new café, every moment with you is an adventure.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your resilience</p>
+            </div>
+            <div class="flip-card-back">
+              <p>You always bounce back stronger, no matter what. That strength and determination are truly inspiring to me.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your sense of humor</p>
+            </div>
+            <div class="flip-card-back">
+              <p>Your laugh is the best sound in the world, and you always know how to make me smile, even on the toughest days.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Our future</p>
+            </div>
+            <div class="flip-card-back">
+              <p>I love that every day with you feels like a new beginning, and I can't wait to see what our future holds.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Just being with you</p>
+            </div>
+            <div class="flip-card-back">
+              <p>My favorite moments are the quiet ones when we're just together, doing nothing at all. You make every moment feel special.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your laugh</p>
+            </div>
+            <div class="flip-card-back">
+              <p>It's the most beautiful sound in the world. It's contagious and always fills me with joy.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your kindness to others</p>
+            </div>
+            <div class="flip-card-back">
+              <p>I am constantly in awe of how you treat everyone around you with such compassion and grace.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>How you support me</p>
+            </div>
+            <div class="flip-card-back">
+              <p>You're my biggest cheerleader. Your belief in me gives me the courage to chase my dreams.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your beautiful heart</p>
+            </div>
+            <div class="flip-card-back">
+              <p>It's the truest part of you. It's what makes you so caring, so genuine, and so incredibly easy to love.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your courage</p>
+            </div>
+            <div class="flip-card-back">
+              <p>You face every challenge with a bravery that amazes me. It's one of the qualities I admire most about you.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your passion</p>
+            </div>
+            <div class="flip-card-back">
+              <p>The way you light up when you talk about your passions is inspiring. Your drive is a beautiful part of you.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Your optimism</p>
+            </div>
+            <div class="flip-card-back">
+              <p>You have a gift for finding the silver lining in every situation. Your positive outlook makes my world brighter.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>A Special Video Memory reminds you about US❤️</h2>
+      <p>Click below to play a video of a special moment we shared❤️</p>
+      <div style="text-align: center; margin: 16px 0;">
+        <button class="btn" id="playVideoBtn">Play Our Video Memory</button>
+      </div>
+      <div id="videoContainer" class="video-container hidden">
+        <video controls>
+          <!-- Make sure this file is in the same folder as the HTML file -->
+          <source src="D:\Fakhry\Shahd's Birthday\2025_09_19_21_01_IMG_0373.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section>
+      <h2>Photo Gallery</h2>
+      <div class="gallery" id="photoGallery">
+        <!-- Replace the placeholders with your own photos, named similarly -->
+        <img src="D:\Fakhry\Shahd's Birthday\MM.jpg" alt="Placeholder image 1">
+        <img src="D:\Fakhry\Shahd's Birthday\MMM.jpg" alt="Placeholder image 2">
+        <img src="D:\Fakhry\Shahd's Birthday\MMMM.jpg" alt="Placeholder image 3">
+        <img src="D:\Fakhry\Shahd's Birthday\MMMMM.jpg" alt="Placeholder image 4">
+        <img src="D:\Fakhry\Shahd's Birthday\MMMMMM.jpg" alt="Placeholder image 5">
+        <img src="D:\Fakhry\Shahd's Birthday\MMMMMMM.jpg" alt="Placeholder image 6">
+      </div>
+    </section>
+
+    <section>
+      <h2>Photo Memories Slideshow</h2>
+      <p class="text-center">Memories</p>
+      <div class="slideshow-container">
+          <img id="slideshowImage" class="slideshow-image" src="" alt="Slideshow Image">
+          <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <a class="next" onclick="changeSlide(1)">&#10095;</a>
+      </div>
+    </section>
+
+  </div>
+  
+  <footer>Made with full love</footer>
+
+  <!-- Music Player -->
+  <audio id="background-music" loop>
+    <!-- Make sure this file is in the same folder as the HTML file -->
+    <source src="RSMHA.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Image Modal for enlargement -->
+  <div id="imageModal" class="image-modal-overlay">
+    <img id="modalImage" src="" alt="Enlarged image">
+  </div>
+
+  <script>
+    const revealBtn = document.getElementById('revealBtn');
+    const surprise = document.getElementById('surprise');
+    const hint = document.getElementById('hint');
+    const playVideoBtn = document.getElementById('playVideoBtn');
+    const videoContainer = document.getElementById('videoContainer');
+    const photoGallery = document.getElementById('photoGallery');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const backgroundMusic = document.getElementById('background-music');
+    const slideshowImage = document.getElementById('slideshowImage');
+    const typedMessageElement = document.getElementById('typed-message');
+
+    // Slideshow logic
+    // Replace the placeholders with your own photos, named similarly
+    const slideshowPhotos = [
+        "RONE.jpg",
+        "RTWO.jpg",
+        "RTHREE.jpg",
+        "R.jpg",
+        "RR.jpg",
+        "RRR.jpg"
+    ];
+    let slideshowIndex = 0;
+
+    function showSlideshowImage() {
+        if (slideshowPhotos.length > 0) {
+            slideshowImage.src = slideshowPhotos[slideshowIndex];
+        }
+    }
+
+    function changeSlide(n) {
+        slideshowIndex += n;
+        if (slideshowIndex >= slideshowPhotos.length) {
+            slideshowIndex = 0;
+        } else if (slideshowIndex < 0) {
+            slideshowIndex = slideshowPhotos.length - 1;
+        }
+        showSlideshowImage();
+    }
+    
+    // Check if the elements exist before adding event listeners
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    if (prevButton) {
+      prevButton.onclick = () => changeSlide(-1);
+    }
+    if (nextButton) {
+      nextButton.onclick = () => changeSlide(1);
+    }
+
+    // Initial load of the slideshow image
+    showSlideshowImage();
+
+    // Flip card logic
+    const loveCards = document.querySelectorAll('.flip-card');
+    loveCards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+
+    const fullMessageText = `My dearest Shahd,
+
+Happy 22nd Birthday! On this day, September 20th, I celebrate not only the day you were born but also the incredible, radiant woman you have become. My world became infinitely brighter the moment you entered it, and I am endlessly grateful for the laughter, the kindness, and the profound love we share. Every memory we’ve created, from the simple moments of quiet conversation to our grand adventures, is a treasure I hold close to my heart.
+
+I find myself constantly in awe of you. Your infectious optimism has a way of turning even the gloomiest days into something beautiful. Your quiet strength and unwavering kindness inspire me to be a better person. You are a true light in this world, and it is a privilege to stand by your side. You have a heart of gold, a mind full of dreams, and a spirit that inspires everyone around you. Watching you grow and flourish has been my greatest joy, and I can't wait to see all the amazing things you will achieve in the coming year.
+
+Thinking back on our journey, so many moments stand out. I remember the first time I saw you, and how I knew instinctively that you were different. I remember our first date, the nerves and the excitement, and the way you made me feel completely at ease. I remember the late-night talks where we shared our deepest fears and biggest dreams, and the quiet comfort of just being together, knowing we were home. These memories, and a thousand others just like them, are the foundation of my happiness. They are the stories that define us, and they are the promise of so many more beautiful chapters to come.
+
+This past year has been a testament to your resilience and grace. You’ve faced challenges with such determination and emerged stronger and more brilliant than ever. You never stop learning, growing, and becoming the best version of yourself, and it fills me with so much pride. Your passion for life is contagious, and I'm so lucky to have a partner who encourages me to chase my own dreams with the same fire.
+
+I want you to know how much you mean to me. You are my best friend, my confidante, my biggest cheerleader, and my one true love. When I look at you, I see a future filled with joy, adventure, and unwavering support. I see a partnership built on trust, respect, and a love that only deepens with time. You have a way of seeing the best in me, even when I can’t see it myself, and for that, I am eternally grateful.
+
+On this day, my wish for you is simple yet profound. I wish you boundless happiness, unshakable peace, and a year ahead that exceeds your wildest expectations. I hope you continue to find joy in the little things and that your heart remains as full as the love you give so freely. May every challenge you face be met with courage, and every dream you have be within your reach. I hope you always know how loved and cherished you are.
+
+Thank you for being you, Shoshty❤️. Thank you for your kindness, your beauty, and your beautiful smile. Thank you for making my life so much richer and more meaningful. My love for you grows with each passing day. Happy Birthday, my love. Forever and always, Fakhry.`;
+
+    function typeMessage(element, message, speed) {
+        const words = message.split(/(\s+)/);
+        let i = 0;
+        element.innerHTML = '';
+        function addWord() {
+            if (i < words.length) {
+                if (words[i] === '\n' || words[i] === '\n\n') {
+                    element.innerHTML += '<br><br>';
+                } else {
+                    element.innerHTML += words[i];
+                }
+                i++;
+                setTimeout(addWord, speed);
+            }
+        }
+        addWord();
+    }
+
+    revealBtn.addEventListener('click', () => {
+      surprise.classList.remove('hidden');
+      hint.classList.remove('hidden');
+      window.scrollTo({ top: surprise.offsetTop - 20, behavior: 'smooth' });
+      
+      // Start music when the card is revealed
+      if(backgroundMusic) backgroundMusic.play();
+
+      // Start the typing effect
+      typeMessage(typedMessageElement, fullMessageText, 60);
+    });
+
+    playVideoBtn.addEventListener('click', () => {
+      videoContainer.classList.remove('hidden');
+      videoContainer.querySelector('video').play();
+      playVideoBtn.style.display = 'none';
+    });
+
+    // Image gallery modal logic
+    photoGallery.addEventListener('click', (e) => {
+      if(e.target.tagName === 'IMG'){
+        modalImage.src = e.target.src;
+        imageModal.classList.add('active');
+      }
+    });
+    imageModal.addEventListener('click', () => {
+      imageModal.classList.remove('active');
+    });
+
+    // Fireworks Background Animation
+    const canvas = document.getElementById('fireworks-bg');
+    const ctx = canvas.getContext('2d');
+    let fireworks = [];
+    let particles = [];
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function random(min, max) { return Math.random() * (max - min) + min; }
+    function createFirework(x, y) {
+      fireworks.push({
+        x: x || random(0, canvas.width), y: canvas.height, targetY: y || random(canvas.height * 0.1, canvas.height * 0.8),
+        speed: random(1, 2.5), hue: random(0, 360), exploded: false, size: 2,
+        trail: [], trailLimit: 15, targetReached: false
+      });
+    }
+
+    function createParticles(x, y, hue) {
+      const particleCount = 100;
+      for (let i = 0; i < particleCount; i++) {
+        const angle = random(0, Math.PI * 2);
+        const speed = random(1, 10);
+        particles.push({
+          x: x, y: y, speedX: Math.cos(angle) * speed, speedY: Math.sin(angle) * speed,
+          hue: hue, opacity: 1, size: random(1, 3), decay: random(0.015, 0.03)
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < fireworks.length; i++) {
+        const firework = fireworks[i];
+        if (!firework.exploded) {
+          firework.y -= firework.speed;
+          firework.trail.unshift({ x: firework.x, y: firework.y });
+          if (firework.trail.length > firework.trailLimit) firework.trail.pop();
+          ctx.beginPath();
+          ctx.moveTo(firework.trail[0].x, firework.trail[0].y);
+          ctx.lineWidth = firework.size;
+          ctx.strokeStyle = `hsl(${firework.hue}, 100%, 75%)`;
+          for (let j = 0; j < firework.trail.length; j++) ctx.lineTo(firework.trail[j].x, firework.trail[j].y);
+          ctx.stroke();
+          if (firework.y <= firework.targetY) {
+            firework.exploded = true;
+            createParticles(firework.x, firework.y, firework.hue);
+          }
+        }
+      }
+      for (let i = 0; i < particles.length; i++) {
+        const particle = particles[i];
+        particle.x += particle.speedX;
+        particle.y += particle.speedY + 0.5;
+        particle.opacity -= particle.decay;
+        if (particle.opacity <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+        ctx.fillStyle = `hsla(${particle.hue}, 100%, 50%, ${particle.opacity})`;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      fireworks = fireworks.filter(f => !f.exploded);
+    }
+
+    function loop() {
+      draw();
+      if (Math.random() < 0.02) createFirework();
+      requestAnimationFrame(loop);
+    }
+    
+    window.onload = function() { loop(); };
+
+    // New Countdown Timer Logic
+    const birthday = new Date('September 20, 2025 00:00:00').getTime();
+    const countdown = document.getElementById('countdown');
+
+    const countdownFunction = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = birthday - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        countdown.innerHTML = "Happy Birthday!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
